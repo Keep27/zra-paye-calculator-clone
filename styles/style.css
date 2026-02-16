@@ -1,0 +1,520 @@
+/* Basic reset to remove default browser styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Main body styling - this is where we set the background image */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    background-image: url('images/scientific-calculator.jpg');  /* <-- PUT YOUR BACKGROUND IMAGE HERE */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Blue header at the top */
+.header {
+    background-color: #0066cc;
+    padding: 15px 50px;
+    animation: slideDown 0.5s ease-out;
+}
+
+/* Center the logo and navigation links */
+.header-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* ZRA logo size */
+.logo-img {
+    height: 80px;
+    width: auto;
+    animation: fadeIn 0.8s ease-in;
+}
+
+/* Navigation links in the blue header */
+.top-nav {
+    display: flex;
+    gap: 25px;
+}
+
+.top-nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+/* Underline links when you hover over them */
+.top-nav a:hover {
+    text-decoration: underline;
+    transform: translateY(-2px);
+}
+
+/* Gold navigation bar below the header */
+.main-nav {
+    background-color: #c9a961;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    animation: slideDown 0.6s ease-out;
+}
+
+/* Container for the navigation items */
+.nav-center {
+    display: flex;
+}
+
+/* Individual navigation links */
+.nav-center a {
+    color: white;
+    text-decoration: none;
+    padding: 15px 20px;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: background-color 0.3s ease;
+}
+
+/* Darken background when hovering over nav links */
+.nav-center a:hover {
+    background-color: rgba(0,0,0,0.1);
+}
+
+/* Search icon styling */
+.search-icon {
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+}
+
+/* Main content area where the calculator lives */
+.main-content {
+    padding: 40px 20px;
+    flex: 1;
+}
+
+/* Container to keep calculator centered and not too wide */
+.calculator-container {
+    max-width: 800px;
+    margin: 0 auto;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+/* The white calculator card */
+.calculator-card {
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+}
+
+.calculator-card:hover {
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+/* Gray header that says "Paye Calculator" */
+.calculator-header {
+    background-color: #e8e8e8;
+    padding: 25px;
+    text-align: center;
+}
+
+.calculator-header h1 {
+    font-size: 28px;
+    font-weight: normal;
+    color: #333;
+}
+
+/* Main calculator body with all the inputs */
+.calculator-body {
+    padding: 30px 40px;
+}
+
+/* Each row in the form (label + input or label + result) */
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #e0e0e0;
+    animation: fadeIn 1s ease-in;
+}
+
+/* Labels like "Basic Pay", "Allowances" etc */
+.form-row label {
+    font-size: 15px;
+    color: #333;
+}
+
+/* Input boxes where you type numbers */
+.form-row input {
+    width: 60%;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 14px;
+    transition: border-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Blue border when you click inside an input */
+.form-row input:focus {
+    outline: none;
+    border-color: #0066cc;
+    transform: scale(1.02);
+}
+
+/* Placeholder text color */
+.form-row input::placeholder {
+    color: #999;
+}
+
+/* Result numbers (not inputs) */
+.result-row span {
+    font-weight: 600;
+    color: #333;
+    animation: slideIn 0.5s ease-out;
+}
+
+/* Special gray box for net salary */
+.net-salary {
+    background-color: #e8e8e8;
+    padding: 15px 20px;
+    margin: 25px 0;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 3px;
+    animation: pulse 0.6s ease-in-out;
+}
+
+.net-label {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.net-value {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+/* Tax breakdown table - hidden until you enter a salary */
+.tax-bands-section {
+    margin: 30px 0;
+    display: none;
+    animation: fadeInUp 0.5s ease-out;
+}
+
+/* Show the table when this class is added */
+.tax-bands-section.show {
+    display: block;
+}
+
+.tax-bands-section h2 {
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+/* The tax breakdown table styling */
+.tax-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 15px;
+}
+
+.tax-table th {
+    background-color: #f5f5f5;
+    padding: 12px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 13px;
+    border: 1px solid #ddd;
+}
+
+.tax-table td {
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    font-size: 13px;
+}
+
+/* Slight highlight when hovering over table rows */
+.tax-table tbody tr {
+    transition: background-color 0.3s ease;
+}
+
+.tax-table tbody tr:hover {
+    background-color: #fafafa;
+}
+
+/* Small note below the tax table */
+.tax-note {
+    font-size: 12px;
+    color: #666;
+    font-style: italic;
+}
+
+/* Clear button */
+.clear-btn {
+    background-color: #0088cc;
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 3px;
+    font-size: 14px;
+    cursor: pointer;
+    display: block;
+    margin: 20px auto 0;
+    transition: all 0.3s ease;
+}
+
+/* Darker blue when hovering over clear button */
+.clear-btn:hover {
+    background-color: #0077bb;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Blue footer with contact info */
+.footer {
+    background-color: #0066cc;
+    color: white;
+    padding: 40px 50px;
+    margin-top: auto;
+}
+
+.footer-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+.footer-section {
+    flex: 1;
+}
+
+.footer-section h3 {
+    font-size: 16px;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+/* Full-width line under each footer heading */
+.footer-underline {
+    width: 100%;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.3);
+    margin-bottom: 20px;
+}
+
+/* Contact items with icons */
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+/* Icons for location, phone, email */
+.footer-icon {
+    width: 20px;
+    height: 20px;
+    margin-top: 2px;
+    filter: brightness(0) invert(1);
+}
+
+.footer-section p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* Remove bullet points from the links list */
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin: 8px 0;
+    font-size: 14px;
+    position: relative;
+    padding-left: 15px;
+}
+
+/* Add bullet points as dots */
+.footer-section ul li:before {
+    content: "•";
+    position: absolute;
+    left: 0;
+}
+
+/* Social media icons in footer */
+.social-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.social-icon {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    padding: 8px;
+}
+
+/* Make icons slightly transparent when hovering */
+.social-icon:hover {
+    opacity: 1;
+    transform: translateY(-3px);
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Gray copyright bar at the very bottom */
+.copyright-bar {
+    background-color: #f5f5f5;
+    padding: 15px 50px;
+    border-top: 1px solid #ddd;
+}
+
+.copyright-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.copyright-content p {
+    font-size: 13px;
+    color: #666;
+}
+
+/* Social icons in copyright bar */
+.copyright-social {
+    display: flex;
+    gap: 12px;
+}
+
+.copyright-icon {
+    width: 25px;
+    height: 25px;
+    opacity: 0.7;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.copyright-icon:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+/* ANIMATIONS */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.02);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Make the site work on phones and tablets */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .main-nav {
+        overflow-x: auto;
+        justify-content: flex-start;
+    }
+    
+    .calculator-body {
+        padding: 20px;
+    }
+    
+    .form-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .form-row input {
+        width: 100%;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+    }
+    
+    .copyright-content {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+}

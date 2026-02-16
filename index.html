@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculate PAYE - ZRA</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    <!-- Top blue header with logo and links -->
+    <header class="header">
+        <div class="header-content">
+            <img src="images/ZRA-logo-01.png" alt="ZRA Logo" class="logo-img">
+            <nav class="top-nav">
+                <a href="#">About Us</a>
+                <a href="#">Tax Payer Charter</a>
+                <a href="#">Tenders</a>
+                <a href="#">Careers</a>
+                <a href="#">Tutorials</a>
+                <a href="#">Contact Us</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Gold navigation bar -->
+    <nav class="main-nav">
+        <div class="nav-center">
+            <a href="#">HOME</a>
+            <a href="#">REGISTRATIONS</a>
+            <a href="#">BUSINESS</a>
+            <a href="#">CUSTOMS</a>
+            <a href="#">PUBLICATIONS</a>
+            <a href="#">STATISTICS</a>
+            <a href="#">TAX PORTAL</a>
+            <a href="#">TAX TOOLS</a>
+            <a href="#">SMART INVOICE</a>
+            <a href="#">TAXPAYER RELATIONS</a>
+            <a href="#"><img src="images/icons/search.svg" alt="Search" class="search-icon"></a>
+        </div>
+    </nav>
+
+    <!-- Main calculator area -->
+    <main class="main-content">
+        <div class="calculator-container">
+            <!-- The white calculator card -->
+            <div class="calculator-card">
+                <div class="calculator-header">
+                    <h1>Paye Calculator</h1>
+                </div>
+
+                <div class="calculator-body">
+                    <form id="payeForm">
+                        <!-- Input for basic salary -->
+                        <div class="form-row">
+                            <label>Basic Pay</label>
+                            <input type="text" id="basicPay" placeholder="Enter Salary">
+                        </div>
+
+                        <!-- Input for allowances like housing, transport etc -->
+                        <div class="form-row">
+                            <label>Allowances</label>
+                            <input type="text" id="allowances" placeholder="Enter allowances">
+                        </div>
+
+                        <!-- Shows the total gross pay automatically -->
+                        <div class="form-row result-row">
+                            <label>Gross/Taxable Pay</label>
+                            <span id="grossPay">K 0</span>
+                        </div>
+
+                        <!-- Any other statutory contributions -->
+                        <div class="form-row">
+                            <label>Statutory Contribution</label>
+                            <input type="text" id="statutoryContribution" placeholder="Enter allowances">
+                        </div>
+
+                        <!-- NAPSA is 5% of gross pay -->
+                        <div class="form-row result-row">
+                            <label>Napsa 5%</label>
+                            <span id="napsa">K 0</span>
+                        </div>
+
+                        <!-- NHIMA is 1% of gross pay -->
+                        <div class="form-row result-row">
+                            <label>National Health Insurance</label>
+                            <span id="nhima">K 0</span>
+                        </div>
+
+                        <!-- Total of NAPSA and NHIMA -->
+                        <div class="form-row result-row">
+                            <label>Total Contributions</label>
+                            <span id="totalContributions">K 0</span>
+                        </div>
+
+                        <!-- This is the PAYE tax amount -->
+                        <div class="form-row result-row">
+                            <label>Total Tax Deductions</label>
+                            <span id="totalTaxDeductions">K 0</span>
+                        </div>
+
+                        <!-- Everything taken from your salary -->
+                        <div class="form-row result-row">
+                            <label>Total Deductions</label>
+                            <span id="totalDeductions">K 0</span>
+                        </div>
+
+                        <!-- What you actually take home - the most important number! -->
+                        <div class="net-salary">
+                            <span class="net-label">Net Salary</span>
+                            <span class="net-value" id="netSalary">K 0</span>
+                        </div>
+
+                        <!-- Tax breakdown table - shows how the tax was calculated -->
+                        <div id="taxBandsSection" class="tax-bands-section">
+                            <h2>PAYE TAX COMPUTATION BANDS 2026</h2>
+                            <table class="tax-table">
+                                <thead>
+                                    <tr>
+                                        <th>Tax Bands</th>
+                                        <th>Chargeable Income</th>
+                                        <th>Tax Rate</th>
+                                        <th>Tax Due</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="taxBandsBody"></tbody>
+                            </table>
+                            <p class="tax-note">Note: Gross pay shows the tax band category used to calculate your tax</p>
+                        </div>
+
+                        <!-- Button to reset everything -->
+                        <button type="button" id="clearBtn" class="clear-btn">Clear</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer with contact info and links -->
+    <footer class="footer">
+        <div class="footer-content">
+            <!-- Contact details -->
+            <div class="footer-section">
+                <h3>CONTACT US</h3>
+                <div class="footer-underline"></div>
+                <div class="contact-item">
+                    <img src="images/icons/location-outline.svg" alt="Location" class="footer-icon">
+                    <p>Plot No 1704 Kalambo Road / Villa Elizabetha, Lusaka</p>
+                </div>
+                <div class="contact-item">
+                    <img src="images/icons/phone-portrait-outline.svg" alt="Phone" class="footer-icon">
+                    <p>4111</p>
+                </div>
+                <div class="contact-item">
+                    <img src="images/icons/mail-outline.svg" alt="Email" class="footer-icon">
+                    <p>advice@zra.org.zm</p>
+                </div>
+            </div>
+            
+            <!-- Useful external links -->
+            <div class="footer-section">
+                <h3>OTHER LINKS</h3>
+                <div class="footer-underline"></div>
+                <ul>
+                    <li>Buy Insurance</li>
+                    <li>National Pension Scheme Authority</li>
+                    <li>Bank of Zambia (BOZ)</li>
+                    <li>Patent and Company Registration Agency</li>
+                    <li>Ministry of Finance</li>
+                    <li>Ministry of Commerce Trade and Industry</li>
+                    <li>Zambia Trade Portal</li>
+                    <li>Zambia Development Agency</li>
+                    <li>Common Market for Eastern and Southern Africa</li>
+                    <li>World Customs Organisation</li>
+                    <li>World Trade Organisation</li>
+                    <li>Southern African Development Community</li>
+                    <li>Organisation for Economic Co-operation and Development</li>
+                </ul>
+            </div>
+            
+            <!-- Social media links -->
+            <div class="footer-section">
+                <h3>SOCIAL MEDIA</h3>
+                <div class="footer-underline"></div>
+                <div class="social-icons">
+                    <a href="#"><img src="images/icons/logo-facebook.svg" alt="Facebook" class="social-icon"></a>
+                    <a href="#"><img src="images/icons/logo-twitter.svg" alt="Twitter" class="social-icon"></a>
+                    <a href="#"><img src="images/icons/logo-instagram.svg" alt="Instagram" class="social-icon"></a>
+                    <a href="#"><img src="images/icons/logo-linkedin.svg" alt="LinkedIn" class="social-icon"></a>
+                    <a href="#"><img src="images/icons/logo-youtube.svg" alt="YouTube" class="social-icon"></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Copyright bar at the very bottom -->
+    <div class="copyright-bar">
+        <div class="copyright-content">
+            <p>© 2026 Zambia Revenue Authority. All rights reserved</p>
+            <div class="copyright-social">
+                <a href="#"><img src="images/icons/logo-facebook.svg" alt="Facebook" class="copyright-icon"></a>
+                <a href="#"><img src="images/icons/logo-twitter.svg" alt="Twitter" class="copyright-icon"></a>
+                <a href="#"><img src="images/icons/logo-instagram.svg" alt="Instagram" class="copyright-icon"></a>
+                <a href="#"><img src="images/icons/logo-linkedin.svg" alt="LinkedIn" class="copyright-icon"></a>
+                <a href="#"><img src="images/icons/logo-youtube.svg" alt="YouTube" class="copyright-icon"></a>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
